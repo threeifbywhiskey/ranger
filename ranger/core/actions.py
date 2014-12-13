@@ -365,8 +365,8 @@ class Actions(FileManagerAware, EnvironmentAware, SettingsAware):
                 open(ranger.arg.choosefile, 'w').write(self.fm.thisfile.path)
 
             if ranger.arg.choosefiles:
-                open(ranger.arg.choosefiles, 'w').write("".join(
-                    f.path + "\n" for f in self.fm.thistab.get_selection()))
+                open(ranger.arg.choosefiles, 'w').write("".join(f.path + "\n"
+                    for f in sum((d.marked_items for d in self.fm.directories.values()), [])))
 
             if ranger.arg.choosefile or ranger.arg.choosefiles:
                 raise SystemExit()
